@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <title>Betingelser og ophavsret</title>
+
+
+    <style>
+        .overskrift {
+            font-family: 'Roboto', sans-serif;
+            font-size: 40px;
+            text-transform: uppercase;
+
+        }
+
+        body {
+            background-image: linear-gradient(#242424, #3a3a3a);
+            padding: 20px;
+        }
+
+        .papir {
+            margin: auto;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 50px;
+        }
+
+        .content {
+            font-size: 20px;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+    <section class="papir">
+        <h1 class="overskrift"></h1>
+        <p class=" content"> </p>
+    </section>
+    <script>
+        let side = {};
+        const url = "https://orangemedier.dk/wp-json/wp/v2/test/279";
+
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        function start() {
+            hentJson();
+        }
+
+
+        async function hentJson() {
+            const response = await fetch(url);
+            side = await response.json();
+            Vis();
+        }
+
+        function Vis() {
+            document.querySelector(".overskrift").textContent = side.title.rendered
+            document.querySelector(".content").innerHTML = side.content.rendered;
+
+
+        }
+
+    </script>
+</body>
+
+</html>
